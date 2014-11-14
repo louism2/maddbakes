@@ -4,29 +4,30 @@ class User < ActiveRecord::Base
   
   attr_accessor :password, :password_confirmation, :access_code
   
-  before_create :valid_access_code?
-  before_save :encrypt_password, unless: Proc.new { |user| user.password.blank? }
+  before_validation :encrypt_password, unless: Proc.new { |user| user.password.blank? }
 
-  name_regex = /\A[a-zA-Z\s]{2,50}\z/i   
-  password_regex = /\A(?=.*[A-Z]+)(?=.*[0-9]+).{8,}\z/
-  email_regex = /\A[a-zA-Z0-9_]+@[a-zA-Z0-9\.]+\.[a-zA-Z]{2,3}\z/
+  NAME_FORMAT = /\A[a-zA-Z\s]{2,50}\z/i   
+  PASSWORD_FORMAT = /\A(?=.*[A-Z]+)(?=.*[0-9]+).{8,}\z/
+  EMAIL_FORMAT = /\A[a-zA-Z0-9_]+@[a-zA-Z0-9\.]+\.[a-zA-Z]{2,3}\z/
+  ACCESS_CODE_FORMAT = /\Atwo d\'s one word\z/ 
   
-  validates :name,      presence: true,
-                        format: { with: name_regex, message: 'boo, that name must be only letters and less than 50 characters' }
+  validates :name,                format: { with: NAME_FORMAT, message: 'boo, that name must be only letters and less than 50 characters' }
                    
-  validates :password,  confirmation: true,
-                        format: { with: password_regex, message: 'boo, that password must be at least 8 characters with one or more capital letters and numbers' }, if: Proc.new { |user| user.new_record? || !user.password.blank? }
+  validates :password,            confirmation: true,
+                                  format: { with: PASSWORD_FORMAT, message: 'boo, that password must be at least 8 characters with one or more capital letters and numbers' }, if: Proc.new { |user| user.new_record? || !user.password.blank? }
                         
-  validates :email,     presence: true,
-                        format: { with: email_regex, message: 'girl, check yoself!'}
+  validates :email,               format: { with: EMAIL_FORMAT, message: 'girl, check yoself!'},
+                                  uniqueness: true
                         
-private
-
-  def validate_access_code?
-    access_code == "two d's one word"
-  end
+  validates :salt,                presence: true,
+                                  allow_nil: false
                         
+  validates :encrypted_password,  presence: true,
+                                  allow_nil: false
+                                  
+  validates :access_code,         format: { with: ACCESS_CODE_FORMAT, message: 'girl, that aint the right code'}, if: Proc.new { |user| user.new_record?}
                       
 
-                   
+  
+                        
 end
