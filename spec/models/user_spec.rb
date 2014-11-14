@@ -61,16 +61,16 @@ describe User do
         expect(user.errors[:password]).not_to be_blank
       end
       
-      it 'contains a capital letter' do
-        user.password = no_capital_password
-        user.password_confirmation = no_capital_password
+      it 'contains a numeric character' do
+        user.password = no_digit_password
+        user.password_confirmation = no_digit_password
         expect(user).not_to be_valid
         expect(user.errors[:password]).not_to be_blank
       end
       
-      it 'contains a numeric character' do
-        user.password = no_digit_password
-        user.password_confirmation = no_digit_password
+      it 'contains a capital letter' do
+        user.password = no_capital_password
+        user.password_confirmation = no_capital_password
         expect(user).not_to be_valid
         expect(user.errors[:password]).not_to be_blank
       end
