@@ -1,0 +1,19 @@
+development:
+  adapter: postgresql
+  database: queenie
+  password: 'music123'
+  host: localhost
+  pool: 5
+  timeout: 5000
+
+test:
+  adapter: postgresql
+  database: queenie_test
+  password: 'music123'
+  host: localhost
+  pool: 5
+  timeout: 5000
+
+# production:
+#   <<: *default
+#   database: db/production.sqlite3
