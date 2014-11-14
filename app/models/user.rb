@@ -1,9 +1,10 @@
 class User < ActiveRecord::Base
   
+  include PasswordEncryption
   
+  attr_accessor :password, :password_confirmation, :access_code
   
-  attr_accessor :password, :password_confirmation
-  
+  before_create :valid_access_code?
   before_save :encrypt_password, unless: Proc.new { |user| user.password.blank? }
 
   name_regex = /\A[a-zA-Z\s]{2,50}\z/i   
@@ -18,6 +19,12 @@ class User < ActiveRecord::Base
                         
   validates :email,     presence: true,
                         format: { with: email_regex, message: 'girl, check yoself!'}
+                        
+private
+
+  def validate_access_code?
+    access_code == "two d's one word"
+  end
                         
                       
 

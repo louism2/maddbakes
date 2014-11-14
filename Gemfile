@@ -17,6 +17,7 @@ group :test, :development do
   gem "rspec-mocks"
   gem "jasmine"
   gem 'jasmine-jquery-rails'
+  gem 'capybara'
   #gem 'sinon-rails'
 end
 
