@@ -40,3 +40,25 @@ feature 'creating a user' do
   end
 
 end
+
+feature 'updating a user' do
+  
+  let(:user){ FactoryGirl.create(:new_user) }
+  
+  scenario 'with valid user data' do
+    visit user_path(user)
+    within('#user_form') do
+      fill_in 'user_name', with: user.name
+      fill_in 'user_email', with: user.email
+      fill_in 'user_password', with: user.password
+      fill_in 'user_password_confirmation', with: user.password
+      fill_in 'user_access_code', with: user.access_code
+    end
+    expect{
+      click_button 'Create Account'
+    }.to change(User, :count).by(1)
+    
+    page.should have_selector('#flash_success')
+  end
+  
+end  
