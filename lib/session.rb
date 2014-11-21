@@ -5,13 +5,8 @@ module Session
     self.current_user=(user) 
   end
 
-  def encrypt_password  
-    salt = make_salt 
-    encrypted_password = encrypt(password)
-  end
-
   def sign_out(user)
-  	cookies.delete('remember_token_'+user.class.to_s.downcase!)
+  	cookies.delete('head_bitch')
   	self.current_user = nil 
   end
 

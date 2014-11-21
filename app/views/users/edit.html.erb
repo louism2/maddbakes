@@ -1,0 +1,5 @@
+<%= form_for @user, html: {id: 'user_form'} do |f| %>
+	<%= render partial: 'shared/error_messages', object: @user.errors.messages if @user.errors.any?%>	
+	<%= render partial: 'form', object: f %>
+	<%= f.submit "Update Account" %>
+<% end %>	

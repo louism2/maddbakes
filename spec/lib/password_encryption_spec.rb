@@ -1,5 +1,6 @@
 require 'rails_helper'
 
+
 describe PasswordEncryption do
   
   describe '#encrypt_password' do

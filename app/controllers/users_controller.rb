@@ -7,6 +7,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_parameters)
     if @user.save
+      sign_in(@user)
       flash[:success] = "You up in it girl!"
       redirect_to @user     
     else
@@ -16,7 +17,23 @@ class UsersController < ApplicationController
   end
   
   def show
-    
+    @user
+  end
+  
+  def edit
+    @user = User.find(params[:id])
+  end
+  
+  def update
+    @user = User.find(params[:id])
+    if @user.update_attributes(user_parameters)
+      sign_in(@user)
+      flash[:success] = "Straight Updating!"
+      redirect_to @user
+    else
+      flash[:error] = "Boo, errors boo."
+      render 'edit'
+    end
   end
 
 private
