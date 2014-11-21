@@ -7,9 +7,7 @@ describe User do
     context 'new user' do
       it 'should produce a valid object' do
         user = FactoryGirl.build(:new_user)
-        user.valid?
-        expect(user.errors[:salt]).not_to be_empty
-        expect(user.errors[:encrypted_password]).not_to be_empty      
+        expect(user).to be_valid     
       end      
     end
     
