@@ -11,6 +11,7 @@ feature 'creating a user' do
       fill_in 'Email', with: user.email
       fill_in 'password', with: user.password
       fill_in 'password_confirmation', with: user.password
+      fill_in 'access_code', with: "two d's one word"
     end
     expect{
       click_button 'submit'
