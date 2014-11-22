@@ -10,7 +10,6 @@ describe Photo do
   end
   
   describe 'validations' do
-    
     describe 'attachment_content_type' do
       
       let(:photo){ Photo.new } 
@@ -34,9 +33,7 @@ describe Photo do
         photo.image_file_content_type = 'image/gif'
         expect(photo).to be_valid
       end
-      
     end
-    
   end
   
 end
