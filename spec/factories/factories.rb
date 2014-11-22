@@ -14,6 +14,11 @@ FactoryGirl.define do
     end
   end
   
+  factory :post do
+    comment "Here is a comment for the post Factory.  Here is some more text."
+    author "Louie Mancini"
+  end
+  
   factory :photo do
     image_file File.new('/Users/louism2/rails_projects/queenie/spec/testing_utilities/honda.jpg')
   end
