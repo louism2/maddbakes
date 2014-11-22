@@ -1,12 +1,11 @@
 module Session
-  
-  def sign_in(user)
-    cookies.permanent.signed['head_bitch'] = [user.id, user.salt] 
-    self.current_user=(user) 
+
+  def signed_in?
+    !current_user.nil?
   end
 
-  def sign_out(user)
-  	cookies.delete('head_bitch')
+  def sign_out  
+  	cookies.delete(:remember_token)
   	self.current_user = nil 
   end
 
@@ -15,37 +14,32 @@ module Session
   end
 
   def current_user 
-    @current_user
+    @current_user ||= user_from_remember_token 
+  end
+  
+private
+  
+  def remember_token
+    cookies.signed[:head_bitch] || [nil, nil]
   end
 
-  def authenticate_with_salt(id, user_salt_from_cookie)   
-    return nil unless id
-    user = find(id)
+  def user_from_remember_token
+    authenticate_with_cookie(*remember_token) 
+  end
+  
+  def authenticate_with_cookie(id, user_salt_from_cookie) 
+    user = User.find(id)
     (user && user.salt == user_salt_from_cookie) ? user : nil   
   end
-
-  def authenticate(email, submitted_password) 
-    user = self.where(email: email).first
+  
+  def authenticate_with_email_and_password(email, submitted_password) 
+    user = User.where({email: email}).first
     return nil if user.nil?
-    user.has_password?(submitted_password) ? user : false
+    return user if user.has_password?(submitted_password)  
   end
-
-  # def signed_in?
-  #   !current_user.nil?
-  # end
-
-  # def sign_out_link
-  #   link_to 'sign out', sign_out_path, {method: :delete}
-  # end
-
+  
   def has_password?(submitted_password) 
     encrypted_password == encrypt(submitted_password) 
-  end
-
-private
-
-  def encrypt(pass)
-    secure_hash("#{salt} -- #{pass}") 
   end
   
 end
