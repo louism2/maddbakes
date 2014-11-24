@@ -3,6 +3,10 @@ module Session
   def signed_in?
     !current_user.nil?
   end
+  
+  def sign_in(user)
+    
+  end  
 
   def sign_out  
   	cookies.delete(:remember_token)
@@ -28,12 +32,12 @@ private
   end
   
   def authenticate_with_cookie(id, user_salt_from_cookie) 
-    user = User.find(id)
+    user = User.find_by_id(id)
     (user && user.salt == user_salt_from_cookie) ? user : nil   
   end
   
   def authenticate_with_email_and_password(email, submitted_password) 
-    user = User.where({email: email}).first
+    user = User.find_by_email(email)
     return nil if user.nil?
     return user if user.has_password?(submitted_password)  
   end
