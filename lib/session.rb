@@ -5,12 +5,13 @@ module Session
   end
   
   def sign_in(user)
-    
-  end  
+    cookies.permanent.signed[:head_bitch] = [user.id, user.salt] 
+    self.current_user=(user) 
+  end
 
   def sign_out  
   	cookies.delete(:remember_token)
-  	self.current_user = nil 
+  	self.current_user=(nil)
   end
 
   def current_user=(user)  

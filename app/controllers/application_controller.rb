@@ -6,7 +6,6 @@ class ApplicationController < ActionController::Base
   
   before_filter :authenticate_user
   
-  
   def authenticate_user
     unless signed_in? || safe_pages?
       flash[:error] = "You must be signed in to access the application!"
@@ -19,12 +18,8 @@ private
   def safe_pages?
     controller = params[:controller]
     action = params[:action]
-    return false if controller.eql('users') && !safe_user_actions.include?(action) 
-    controller.eql('sessions') && !safe_session_actions.include?(action) ? false : true
-  end
-  
-  def safe_session_actions
-    ['new','create','destroy']
+    return true if controller.eql?('sessions')
+    controller.eql?('users') && safe_user_actions.include?(action)
   end
   
   def safe_user_actions

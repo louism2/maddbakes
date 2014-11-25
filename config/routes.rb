@@ -6,6 +6,11 @@ Rails.application.routes.draw do
   
   resources :photos
   
+  # session requests
+  get 'sessions/new', to: 'sessions#new', as: 'sign_in'
+  post 'sessions/create', to: 'sessions#create'
+  delete 'sessions/destroy', to: 'sessions#destroy', as: 'sign_out'
+  
   
 
 end

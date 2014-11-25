@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     if @user.save
       sign_in(@user)
       flash[:success] = "You up in it girl!"
-      redirect_to @user     
+      redirect_to @user   
     else
       flash[:error] = "Boo, fix these errors or else!"
       render 'new'
@@ -17,11 +17,11 @@ class UsersController < ApplicationController
   end
   
   def show
-    @user
+    @current_user
   end
   
   def edit
-    @user = User.find(params[:id])
+    @user = current_user
   end
   
   def update
