@@ -13,21 +13,14 @@ describe Post do
     
     let(:post){ FactoryGirl.build(:post)  }
     
-    describe 'comment' do
+    describe 'content' do
       it 'can\'t be blank' do
-        post.comment = ''
+        post.content = ''
         expect(post).not_to be_valid
       end
       
       it 'can\'t be more than 300 characters' do
-        post.comment = 'a'*301
-        expect(post).not_to be_valid
-      end
-    end
-    
-    describe 'author' do
-      it 'can\'t be more than 50 characters' do
-        post.author = 'a'*51
+        post.content = 'a'*301
         expect(post).not_to be_valid
       end
     end

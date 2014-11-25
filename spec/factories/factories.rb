@@ -15,8 +15,7 @@ FactoryGirl.define do
   end
   
   factory :post do
-    comment "Here is a comment for the post Factory.  Here is some more text."
-    author "Louie Mancini"
+    content "Here is a comment for the post Factory.  Here is some more text."
   end
   
   factory :photo do

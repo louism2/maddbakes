@@ -24,8 +24,7 @@ ActiveRecord::Schema.define(version: 20141121233252) do
   end
 
   create_table "posts", force: true do |t|
-    t.text   "comment"
-    t.string "author",  limit: 50
+    t.text "content"
   end
 
   create_table "users", force: true do |t|
