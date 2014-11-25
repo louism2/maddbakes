@@ -20,7 +20,7 @@ describe Post do
       end
       
       it 'can\'t be more than 300 characters' do
-        post.content = 'a'*301
+        post.content = 'a'*3001
         expect(post).not_to be_valid
       end
     end
