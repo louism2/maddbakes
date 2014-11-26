@@ -15,10 +15,15 @@ FactoryGirl.define do
   end
   
   factory :post do
-    content "Here is a comment for the post Factory.  Here is some more text."
+    content "Here is some content for the post Factory.  Here is some more text."
+    factory :post_with_photos do
+      transient{ photo_count 2 }
+      after(:create){ |post, evaluator| create_list(:photo, evaluator.photo_count, post: post) }
+    end
   end
   
   factory :photo do
+    post
     image_file File.new('/Users/louism2/rails_projects/queenie/spec/testing_utilities/honda.jpg')
   end
   

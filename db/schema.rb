@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 20141121233252) do
   enable_extension "plpgsql"
 
   create_table "photos", force: true do |t|
+    t.integer  "post_id"
     t.string   "image_file_file_name"
     t.string   "image_file_content_type"
     t.integer  "image_file_file_size"

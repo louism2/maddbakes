@@ -1,0 +1,6 @@
+<%= form.label :content, "Post Content" %>
+<%= form.text_field :content %>
+<%= form.fields_for :photos, form.object do |photo_fields| %>
+	<%= photo_fields.label :photo %>
+	<%= photo_fields.file_field :image_file %>
+<% end %>

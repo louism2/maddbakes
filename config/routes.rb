@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   
   resources :photos
   
+  resources :posts
+  
   # session requests
   get 'sessions/new', to: 'sessions#new', as: 'sign_in'
   post 'sessions/create', to: 'sessions#create'
