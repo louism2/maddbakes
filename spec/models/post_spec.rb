@@ -1,3 +1,5 @@
+require_relative '../fixtures/test_data'
+
 describe Post do
   
   describe 'factory' do
@@ -37,7 +39,9 @@ describe Post do
   describe 'validates_assciated' do
     describe ':photos' do
       it 'is validated when a save is called' do
-       
+        post = Post.new(TestData::POST_WITH_VALID_PHOTO_PARAMS)
+        post.valid?
+        expect(post.errors['photos']).not_to be_blank
       end 
     end
   end

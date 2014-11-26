@@ -24,7 +24,7 @@ FactoryGirl.define do
   
   factory :photo do
     post
-    image_file File.new('/Users/louism2/rails_projects/queenie/spec/testing_utilities/honda.jpg')
+    image_file File.new("#{Rails.root}/spec/fixtures/honda.jpg")
   end
   
 end

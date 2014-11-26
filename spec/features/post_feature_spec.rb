@@ -12,7 +12,7 @@ feature 'creating a post' do
     
     within('#post_form') do
       fill_in 'post_content', with: post.content
-      page.attach_file('post_photos_attributes_0_image_file', '/Users/louism2/rails_projects/queenie/spec/testing_utilities/honda.jpg')
+      page.attach_file('post_photos_attributes_0_image_file', "#{Rails.root}/spec/fixtures/honda.jpg")
     end
     
     expect{
