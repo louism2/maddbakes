@@ -30,6 +30,7 @@ FactoryGirl.define do
   factory :comment do
     content "Here is a comment and some more content...... why not."
     commenter_name "Louie Mancini"
+    post_id 1
   end
   
 end

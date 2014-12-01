@@ -2,7 +2,7 @@
 
 describe Comment do
   
-  describe 'a valid comment object' do
+  describe 'comment factory' do
     it 'should create a valid object' do
       comment = FactoryGirl.create(:comment)
       expect(comment).to be_valid
@@ -11,38 +11,44 @@ describe Comment do
   
   describe 'validations' do
     
-    let(:post){ FactoryGirl.build(:post)}
+    let(:comment){ FactoryGirl.build(:comment)}
     
-    describe 'content' do
+    describe '@content' do
       it 'has a max length of 500 characters' do
-        post.content = 'a'*500
-        post.valid?
-        expect(post.errors['content']).not_to be_empty
+        comment.content = 'a'*501
+        comment.valid?
+        expect(comment.errors['content']).not_to be_empty
       end  
-      
-      it 'must have at least two characters' do
-        post.content = 'a'
-        post.valid?
-        expect(post.errors['content']).not_to be_empty
+
+      it 'must have at least 2 characters' do
+        comment.content = 'a'
+        comment.valid?
+        expect(comment.errors['content']).not_to be_empty
       end
     end
-    
-    describe 'commenter_name' do
+
+    describe '@commenter_name' do
       it 'has a max length of 40 characters' do
-        post.commenter_name = 'a'*41
-        post.valid?
-        expect(post.errors['commenter_name']).not_to be_empty
+        comment.commenter_name = 'a'*41
+        comment.valid?
+        expect(comment.errors['commenter_name']).not_to be_empty
+      end
+      
+      it 'must have at least 2 characters' do
+        comment.commenter_name = 'a'
+        comment.valid?
+        expect(comment.errors['commenter_name']).not_to be_empty
       end
     end
-    
-    describe 'post_id' do
+
+    describe '@post_id' do
       it 'must be a number' do
-        post.post_id = 'aa'
-        post.valid?
-        expect(post.errors['post_id']).not_to be_empty
+        comment.post_id = 'aa'
+        comment.valid?
+        expect(comment.errors['post_id']).not_to be_empty
       end
     end
-    
+
   end
   
 end  
