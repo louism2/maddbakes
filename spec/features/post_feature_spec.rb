@@ -22,4 +22,22 @@ feature 'creating a post' do
     page.should have_selector('#flash_success')
   end
   
+  scenario 'with valid data' do
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+    
+    visit new_post_path
+    
+    within('#post_form') do
+      fill_in 'post_content', with: post.content
+      page.attach_file('post_photos_attributes_0_image_file', "#{Rails.root}/spec/fixtures/test.txt")
+    end
+    
+    expect{
+      click_button 'Create Post'
+    }.not_to change(Post, :count)
+    
+    page.should have_selector('#error_messages')
+    page.should have_selector('#flash_error')
+  end
+  
 end  
