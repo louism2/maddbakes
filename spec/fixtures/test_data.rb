@@ -1,9 +1,10 @@
 module TestData
   
   def self.create_invalid_image
+    # should be invalid due to the :type attribute.  txt is not an accepted file format
     ActionDispatch::Http::UploadedFile.new({
       :filename => 'test.txt',
-      :content_type => 'txt',
+      :type => 'txt',
       :tempfile => File.new("#{Rails.root}/spec/fixtures/test.txt")
     })
   end
@@ -11,7 +12,7 @@ module TestData
   def self.create_valid_image
     ActionDispatch::Http::UploadedFile.new({
       :filename => 'honda.jpg',
-      :content_type => 'image/jpeg',
+      :type => 'image/jpeg',
       :tempfile => File.new("#{Rails.root}/spec/fixtures/honda.jpg")
     })    
   end  

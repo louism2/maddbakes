@@ -5,7 +5,6 @@ class PostsController < ApplicationController
   end
   
   def create
-    puts ">>>>>>>>> post_parameters : #{post_parameters}"
     @post = Post.new(post_parameters)
     if @post.save
       flash[:success] = "Post created!"

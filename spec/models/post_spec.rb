@@ -38,10 +38,15 @@ describe Post do
   
   describe 'validates_assciated' do
     describe ':photos' do
+      
+      after(:each) do
+        FileUtils.remove_dir("#{Rails.root}/public/system",true)
+      end
+      
       it 'is validated when a save is called' do
-        post = Post.new(TestData::POST_WITH_VALID_PHOTO_PARAMS)
+        post = Post.new(TestData::POST_WITH_INVALID_PHOTO_PARAMS)
         post.valid?
-        expect(post.errors['photos']).not_to be_blank
+        expect(post.errors['photos']).not_to be_empty
       end 
     end
   end
