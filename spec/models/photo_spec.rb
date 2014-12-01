@@ -10,7 +10,7 @@ describe Photo do
   end
   
   describe 'validations' do
-    describe 'attachment_content_type' do
+    describe '@attachment_content_type' do
       
       let(:photo){ Photo.new } 
       
