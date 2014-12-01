@@ -27,6 +27,11 @@ FactoryGirl.define do
     image_file File.new("#{Rails.root}/spec/fixtures/honda.jpg")
   end
   
+  factory :comment do
+    content "Here is a comment and some more content...... why not."
+    commenter_name "Louie Mancini"
+  end
+  
 end
 
   
