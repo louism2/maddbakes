@@ -4,26 +4,13 @@ class ApplicationController < ActionController::Base
   
   protect_from_forgery with: :exception
   
-  before_filter :authenticate_user
+private 
   
-  def authenticate_user
-    unless signed_in? || safe_pages?
+  def authenticate_request
+    unless signed_in?
       flash[:error] = "You must be signed in to access the application!"
       redirect_to sign_in_path()    
     end
   end
-  
-private  
-  
-  def safe_pages?
-    controller = params[:controller]
-    action = params[:action]
-    return true if controller.eql?('sessions')
-    controller.eql?('users') && safe_user_actions.include?(action)
-  end
-  
-  def safe_user_actions
-    ['new','create']
-  end
-  
+
 end
