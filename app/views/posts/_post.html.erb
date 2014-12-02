@@ -1,0 +1,13 @@
+<h2><%= post.title %><h2>
+<!-- 	implement post photo here  -->
+<p><%= post.content %><p>
+<% post.photos.each do |photo| %>
+	<%= render partial: 'photos/photo', object: photo %>
+<% end %>
+<% post.comments.each do |user_comment| %>
+	<%= render partial: 'comments/comment', object: user_comment %>
+<% end %>
+<%= render partial: 'comments/form', locals: {comment: comment, parent_id: post.id} %>
+	
+
+	

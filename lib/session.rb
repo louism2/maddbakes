@@ -10,7 +10,7 @@ module Session
   end
 
   def sign_out  
-  	cookies.delete(:remember_token)
+  	cookies.delete(:head_bitch)
   	self.current_user=(nil)
   end
 
@@ -24,12 +24,12 @@ module Session
   
 private
   
-  def remember_token
-    cookies.signed[:head_bitch] || [nil, nil]
-  end
-
   def user_from_remember_token
     authenticate_with_cookie(*remember_token) 
+  end
+  
+  def remember_token
+    cookies.signed[:head_bitch] || [nil, nil]
   end
   
   def authenticate_with_cookie(id, user_salt_from_cookie) 

@@ -34,6 +34,11 @@ describe Post do
       post = Post.reflect_on_association(:photos)
       expect(post.macro).to eql(:has_many)
     end
+    
+    it 'responds to :comments' do
+      post = Post.reflect_on_association(:comments)
+      expect(post.macro).to eql(:has_many)
+    end
   end
   
   describe 'validates_assciated' do

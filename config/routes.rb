@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   
-  resources :comments
+  resources :comments, only: [:create, :destroy]
 
   root 'pages#home'
   
