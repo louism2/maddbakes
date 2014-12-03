@@ -3,12 +3,10 @@ require_relative '../fixtures/test_data'
 describe Post do
   
   describe 'factory' do
-    
     it 'should produce and valid object' do
       post = FactoryGirl.create(:post)
       expect(post).to be_valid
     end
-    
   end
   
   describe 'validations' do
@@ -54,6 +52,26 @@ describe Post do
         expect(post.errors['photos']).not_to be_empty
       end 
     end
+  end
+  
+  describe '::homepage_query' do
+    
+    before(:each) do
+      FactoryGirl.create(:post_with_photos_and_comments)
+      Post.last.photos.first.update({header_photo: true})
+    end
+    
+    let(:posts){ Post.homepage_query }
+    
+    it 'truncates content if greater than 500 characters' do
+      expect(posts.first.content.length).to eq(503)
+      expect(posts.first.content.slice(499,3)).to eq('...')
+    end
+    
+    it 'gets the @header_photo if available' do
+      expect(posts.first.header_photo).not_to be_nil
+    end
+  
   end
   
 end

@@ -1,8 +1,12 @@
 FactoryGirl.define do
   
+  sequence :email do |n|
+    "louism#{n}@gmail.com"
+  end
+  
   factory :user do
-    name 'Maddie Lucas'
-    email 'louism2@u.washington.edu'
+    name 'Louis Mancini'
+    email 
     factory :persisted_user do
       salt 'fdadau8pgauagud90agdadgda9ufdua9f0dutda68ftda'
       encrypted_password 'fajkl3214htuyv8a932qcr3u90fewau90'
@@ -15,11 +19,19 @@ FactoryGirl.define do
   end
   
   factory :post do
-    content "Here is some content for the post Factory.  Here is some more text."
+    content "Here is some content for the post Factory.  Here is some more text."*8
     factory :post_with_photos do
       transient{ photo_count 2 }
-      after(:create){ |post, evaluator| create_list(:photo, evaluator.photo_count, post: post) }
+      after(:create) do |post, evaluator| 
+        create_list(:photo, evaluator.photo_count, post: post)
+      end  
     end
+    factory :post_with_photos_and_comments do
+      after(:create) do |post, evaluator|
+        create_list(:photo, 2, post: post)
+        create_list(:comment, 2, post: post)
+      end
+    end  
   end
   
   factory :photo do
@@ -28,9 +40,9 @@ FactoryGirl.define do
   end
   
   factory :comment do
+    post
     content "Here is a comment and some more content...... why not."
     commenter_name "Louie Mancini"
-    post_id 1
   end
   
 end
