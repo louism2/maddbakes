@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141202181005) do
+ActiveRecord::Schema.define(version: 20141203211519) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,8 @@ ActiveRecord::Schema.define(version: 20141202181005) do
     t.datetime "image_file_updated_at"
     t.boolean  "header_photo",            default: false
   end
+
+  add_index "photos", ["post_id", "header_photo"], name: "unique_header_photo", unique: true, where: "(header_photo IS TRUE)", using: :btree
 
   create_table "posts", force: true do |t|
     t.text   "content"
