@@ -34,6 +34,20 @@ describe Photo do
         expect(photo).to be_valid
       end
     end
+    
+    describe '@header_photo' do
+      
+      before(:each) do
+        FactoryGirl.create(:post_with_photos_and_comments)
+      end
+      
+      let(:photos){ Post.last.photos }  
+      
+      it 'should only allow one header photo' do
+        photos.first.update_attribute(:header_photo,true)
+        expect{photos.last.update_attribute(:header_photo, true)}.to raise_error()
+      end
+    end
   end
   
 end

@@ -37,6 +37,11 @@ describe Post do
       post = Post.reflect_on_association(:comments)
       expect(post.macro).to eql(:has_many)
     end
+    
+    it 'responds to :header_photo' do
+      post = Post.reflect_on_association(:header_photo)
+      expect(post.macro).to eql(:has_one) 
+    end  
   end
   
   describe 'validates_assciated' do
@@ -54,19 +59,14 @@ describe Post do
     end
   end
   
-  describe '::homepage_query' do
+  describe '::post_previews' do
     
     before(:each) do
       FactoryGirl.create(:post_with_photos_and_comments)
-      Post.last.photos.first.update({header_photo: true})
+      Post.first.photos.first.update({header_photo: true})
     end
     
-    let(:posts){ Post.homepage_query }
-    
-    it 'truncates content if greater than 500 characters' do
-      expect(posts.first.content.length).to eq(503)
-      expect(posts.first.content.slice(499,3)).to eq('...')
-    end
+    let(:posts){ Post.post_previews }
     
     it 'gets the @header_photo if available' do
       expect(posts.first.header_photo).not_to be_nil
