@@ -1,3 +1,9 @@
+<div id='container'>
+	<div id='pane_left' class='pane'></div>
+	<div id='pane_right' class='pane'></div>	
+	<p>Text to test the postioning</p>
+</div>
+
 <% @posts.each do |post| %>
 	<%= render partial: 'posts/post_preview', object: post %>
 <% end %>
