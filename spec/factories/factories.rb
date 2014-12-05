@@ -1,12 +1,8 @@
 FactoryGirl.define do
   
-  sequence :email do |n|
-    "louism#{n}@gmail.com"
-  end
-  
   factory :user do
     name 'Louis Mancini'
-    email 
+    email 'louiscmancini@gmail.com' 
     factory :persisted_user do
       salt 'fdadau8pgauagud90agdadgda9ufdua9f0dutda68ftda'
       encrypted_password 'fajkl3214htuyv8a932qcr3u90fewau90'
@@ -20,6 +16,7 @@ FactoryGirl.define do
   
   factory :post do
     content "Here is some content for the post Factory.  Here is some more text."*8
+    title "An awesome post about cake!"
     factory :post_with_photos do
       transient{ photo_count 2 }
       after(:create) do |post, evaluator| 

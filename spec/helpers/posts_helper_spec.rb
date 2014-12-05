@@ -11,4 +11,18 @@ require 'rails_helper'
 #   end
 # end
 RSpec.describe PostsHelper, :type => :helper do
+  
+  describe '#truncate_content' do
+    
+    let(:post){ FactoryGirl.build(:post, {content: 'a'*501}) }
+    
+    it 'limits the post to 500 characters' do
+      expect(helper.truncate_content(post.content).length).to eq(500)
+    end
+    
+    it 'adds an elipses' do
+      expect(helper.truncate_content(post.content).slice(497,3)).to eq('...')
+    end
+  end
+  
 end

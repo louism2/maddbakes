@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
 
-  include Session
+  include Session, PostsHelper
   
   protect_from_forgery with: :exception
   
