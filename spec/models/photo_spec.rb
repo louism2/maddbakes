@@ -41,6 +41,10 @@ describe Photo do
         FactoryGirl.create(:post_with_photos_and_comments)
       end
       
+      after(:each) do
+        FileUtils.rm_rf("#{Rails.root}/public/system")
+      end
+      
       let(:photos){ Post.last.photos }  
       
       it 'only allows one header photo' do

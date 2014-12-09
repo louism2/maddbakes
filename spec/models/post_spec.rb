@@ -48,7 +48,7 @@ describe Post do
     describe ':photos' do
       
       after(:each) do
-        FileUtils.remove_dir("#{Rails.root}/public/system",true)
+        FileUtils.rm_rf("#{Rails.root}/public/system")
       end
       
       it 'is validated when a save is called' do
@@ -64,6 +64,10 @@ describe Post do
     before(:each) do
       FactoryGirl.create(:post_with_photos_and_comments)
       Post.last.photos.first.update({header_photo: true})
+    end
+    
+    after(:each) do
+      FileUtils.rm_rf("#{Rails.root}/public/system")
     end
     
     let(:posts){ Post.post_previews }

@@ -5,6 +5,10 @@ feature 'creating a post' do
   let(:post){ FactoryGirl.build(:post) }
   let(:user){ FactoryGirl.create(:new_user) }
   
+  after(:each) do
+    FileUtils.rm_rf("#{Rails.root}/public/system")
+  end
+  
   scenario 'with valid data' do
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
     
