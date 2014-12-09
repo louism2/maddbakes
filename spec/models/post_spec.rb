@@ -63,7 +63,7 @@ describe Post do
     
     before(:each) do
       FactoryGirl.create(:post_with_photos_and_comments)
-      Post.first.photos.first.update({header_photo: true})
+      Post.last.photos.first.update({header_photo: true})
     end
     
     let(:posts){ Post.post_previews }
