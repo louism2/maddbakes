@@ -43,9 +43,9 @@ describe Photo do
       
       let(:photos){ Post.last.photos }  
       
-      it 'should only allow one header photo' do
+      it 'only allows one header photo' do
         photos.first.update_attribute(:header_photo,true)
-        expect{photos.last.update_attribute(:header_photo, true)}.to raise_error()
+        expect(photos.last.update_attribute(:header_photo, true)).to be(false)
       end
     end
   end
