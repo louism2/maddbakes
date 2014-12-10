@@ -1,6 +1,6 @@
 class Post < ActiveRecord::Base
   
-  has_many :photos, dependent: :destroy
+  has_many :photos, :inverse_of => :post, dependent: :destroy
   has_one  :header_photo, ->{ where('header_photo = true') }, class_name: 'Photo'  
   has_many :comments, dependent: :destroy
 

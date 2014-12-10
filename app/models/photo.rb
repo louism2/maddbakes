@@ -1,6 +1,6 @@
 class Photo < ActiveRecord::Base
   
-  belongs_to :post
+  belongs_to :post, :inverse_of => :photos
   delegate :save, to: :post
   
   has_attached_file :image_file
@@ -11,7 +11,7 @@ class Photo < ActiveRecord::Base
   def save(*args)
     super
   rescue ActiveRecord::RecordNotUnique => error
-    errors[:base] << "You can only have one photo be your header photo.  Try your selection again"
+    post.errors[:base] << "You can only have one photo be your header photo.  Try your selection again"
     false
   end
   

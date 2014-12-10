@@ -22,5 +22,11 @@ module TestData
                                     
   POST_WITH_VALID_PHOTO_PARAMS = {"content"=>"Here is some content for the post Factory.  Here is some more text.", 
                                   "photos_attributes"=>{"0"=>{"image_file"=>TestData::create_valid_image}}}
+                                  
+  POST_WITH_MULTIPLE_HEADER_PHOTOS = {"content"=>"Here is some content for the post Factory.  Here is some more text.", 
+                                      "photos_attributes"=>{"0"=>{"image_file"=>TestData::create_valid_image, "header_photo"=>'true'},
+                                                        "1"=>{"image_file"=>TestData::create_valid_image, "header_photo"=>'true'}  
+                                                        }
+                                     }
 
 end
