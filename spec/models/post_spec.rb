@@ -51,7 +51,7 @@ describe Post do
         FileUtils.rm_rf("#{Rails.root}/public/system")
       end
       
-      it 'is validated when a save is called' do
+      it 'is validated when save is called' do
         post = Post.new(TestData::POST_WITH_INVALID_PHOTO_PARAMS)
         post.valid?
         expect(post.errors['photos']).not_to be_empty

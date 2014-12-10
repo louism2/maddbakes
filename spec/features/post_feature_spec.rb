@@ -11,22 +11,21 @@ feature 'creating a post' do
   
   scenario 'with valid data' do
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
-    
     visit new_post_path
-    
+
     within('#post_form') do
       fill_in 'post_content', with: post.content
       page.attach_file('post_photos_attributes_0_image_file', "#{Rails.root}/spec/fixtures/honda.jpg")
     end
-    
+
     expect{
       click_button 'Create Post'
     }.to change(Post, :count).by(1) & change(Photo, :count).by(1)
-    
+
     page.should have_selector('#flash_success')
   end
   
-  scenario 'with valid data' do
+  scenario 'with invalid data' do
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
     
     visit new_post_path
