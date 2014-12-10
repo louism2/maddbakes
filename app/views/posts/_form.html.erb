@@ -1,6 +1,9 @@
 <%= form.label :content, "Post Content" %>
 <%= form.text_field :content %>
 <%= form.fields_for :photos, form.object do |photo_fields| %>
-	<%= photo_fields.label :photo %>
-	<%= photo_fields.file_field :image_file %>
+	<div class='file_field_container'>
+		<%= photo_fields.label :photo %>
+		<%= image_tag('red_x.png', size: '20x20', class: 'remove_file') %><%= photo_fields.file_field :image_file %>
+	</div>
 <% end %>
+<%= link_to 'add another photo', '#', id: 'add_file_field' %>
