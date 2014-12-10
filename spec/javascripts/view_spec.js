@@ -4,6 +4,7 @@ describe('Post Form', function(){
     
     it('should add a file field when clicking "add file field"', function(){
     	loadFixtures('post_form.html');
+		setAddFileListener();
 		$('#add_file_field').click();
 		expect($('input[type="file"]').length).toEqual(2);
 	});
