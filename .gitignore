@@ -16,7 +16,7 @@
 /tmp
 
 # Ignore system folder as only used during testing
-/system
+public/system
 
 # Ignore DS_Store
 .DS_Store
