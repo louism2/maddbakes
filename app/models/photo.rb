@@ -1,7 +1,6 @@
 class Photo < ActiveRecord::Base
   
   belongs_to :post, :inverse_of => :photos
-  delegate :save, to: :post
   
   has_attached_file :image_file
   
