@@ -1,5 +1,6 @@
 require 'rails_helper'
 require 'webmock/rspec'
+include WebmockStubs
 
 describe Photo do
   
@@ -39,6 +40,7 @@ describe Photo do
     describe '@header_photo' do
       
       before(:each) do
+        stub_s3_request
         FactoryGirl.create(:post_with_photos_and_comments)
       end
       
@@ -57,10 +59,14 @@ describe Photo do
    
   describe 's3 storage for images' do
     
-    it 'saves images to s3' do
-      stub_request(:post, "http://s3.amazonaws.com/").to_return(:status => 200)
+    before(:each) do
+      stub_s3_request
       FactoryGirl.create(:post_with_photos_and_comments)
-      expect(WebMock).to have_requested(:post, "http://s3.amazonaws.com/")
+    end
+    
+    
+    it 'saves images to s3' do
+      expect(WebMock).to have_requested(:put, /.*amazonaws.*/).twice
     end
   end
   

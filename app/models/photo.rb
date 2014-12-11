@@ -2,7 +2,10 @@ class Photo < ActiveRecord::Base
   
   belongs_to :post, :inverse_of => :photos
   
-  has_attached_file :image_file
+  has_attached_file :image_file, :storage => :s3,
+                                 :s3_credentials => "#{::Rails.root.to_s}/config/s3.yml",
+                                 :path => "photos/:id/:style.jpg",
+                                 :bucket => 'maddbakes'
   
   validates_attachment_content_type :image_file, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
   
