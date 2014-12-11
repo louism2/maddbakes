@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'webmock/rspec'
 
 describe Photo do
   
@@ -51,6 +52,15 @@ describe Photo do
         photos.first.update_attribute(:header_photo,true)
         expect(photos.last.update_attribute(:header_photo, true)).to be(false)
       end
+    end
+   end
+   
+  describe 's3 storage for images' do
+    
+    it 'saves images to s3' do
+      stub_request(:post, "http://s3.amazonaws.com/").to_return(:status => 200)
+      FactoryGirl.create(:post_with_photos_and_comments)
+      expect(WebMock).to have_requested(:post, "http://s3.amazonaws.com/")
     end
   end
   
