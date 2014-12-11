@@ -1,4 +1,6 @@
 require_relative '../fixtures/test_data'
+require 'webmock/rspec'
+include WebmockStubs
 
 describe Post do
   
@@ -62,6 +64,7 @@ describe Post do
   describe '::post_previews' do
     
     before(:each) do
+      stub_s3_request
       FactoryGirl.create(:post_with_photos_and_comments)
       Post.last.photos.first.update({header_photo: true})
     end
@@ -73,7 +76,7 @@ describe Post do
     let(:posts){ Post.post_previews }
     
     it 'gets the @header_photo if available' do
-      expect(posts.first.header_photo).not_to be_nil
+      expect(posts.last.header_photo).not_to be_nil
     end
   
   end

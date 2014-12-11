@@ -18,7 +18,7 @@ feature 'creating a comment' do
     }.to change(Comment, :count).by(1)
     
     expect(current_url).to eq(post_url(post.id))
-    page.should have_selector('#flash_success')
+    expect(page).to have_selector('#flash_success')
   end
   
   scenario 'with invalid comment data' do
@@ -33,8 +33,8 @@ feature 'creating a comment' do
       click_button 'Submit Comment'
     }.not_to change(Comment, :count)
     
-    page.should have_selector('#flash_error')
-    page.should have_selector('#error_messages')
+    expect(page).to have_selector('#flash_error')
+    expect(page).to have_selector('#error_messages')
   end
   
 end  

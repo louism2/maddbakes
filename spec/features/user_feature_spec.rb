@@ -19,7 +19,7 @@ feature 'creating a user' do
     }.to change(User, :count).by(1)
     
     
-    page.should have_selector('#flash_success')
+    expect(page).to have_selector('#flash_success')
   end
   
   scenario 'with invalid user data' do
@@ -37,9 +37,9 @@ feature 'creating a user' do
       }.to change(User, :count).by(0)
       
       
-      current_path.should eql(users_path)
-      page.should have_selector('#error_messages')
-      page.should have_selector('#flash_error')
+      expect(current_path).to eql(users_path)
+      expect(page).to have_selector('#error_messages')
+      expect(page).to have_selector('#flash_error')
     end
 
 end
@@ -62,8 +62,8 @@ feature 'updating a user' do
         fill_in 'user_access_code', with: user.access_code
       end
       click_button 'Update Account'
-      current_path.should eql(user_path(user))
-      page.should have_selector('#flash_success')
+      expect(current_path).to eql(user_path(user))
+      expect(page).to have_selector('#flash_success')
     end
     
     scenario 'with invalid user data' do
@@ -80,9 +80,9 @@ feature 'updating a user' do
         fill_in 'user_access_code', with: user.access_code
       end
       click_button 'Update Account'
-      current_path.should eql(user_path(user))
-      page.should have_selector('#error_messages')
-      page.should have_selector('#flash_error')
+      expect(current_path).to eql(user_path(user))
+      expect(page).to have_selector('#error_messages')
+      expect(page).to have_selector('#flash_error')
     end
   
 end  

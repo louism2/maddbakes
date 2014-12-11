@@ -6,7 +6,7 @@ gem 'pg'
 
 gem 'paperclip'
 gem "aws-s3", "~> 0.6.2"
-gem "aws-sdk", "~> 1.4.1"
+gem 'aws-sdk', '~> 1.59.1'
 gem 'rmagick', '~> 2.13.1'
 
 gem 'rvm-capistrano', group: :development

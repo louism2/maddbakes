@@ -1,4 +1,6 @@
 require "rails_helper"
+require 'webmock/rspec'
+include WebmockStubs
 
 feature 'creating a post' do
   
@@ -11,6 +13,8 @@ feature 'creating a post' do
   
   scenario 'with valid data' do
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+    stub_s3_request
+    
     visit new_post_path
 
     within('#post_form') do
@@ -22,11 +26,12 @@ feature 'creating a post' do
       click_button 'Create Post'
     }.to change(Post, :count).by(1) & change(Photo, :count).by(1)
 
-    page.should have_selector('#flash_success')
+    expect(page).to have_selector('#flash_success')
   end
   
   scenario 'with invalid data' do
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+    stub_s3_request
     
     visit new_post_path
     
@@ -39,8 +44,8 @@ feature 'creating a post' do
       click_button 'Create Post'
     }.not_to change(Post, :count)
     
-    page.should have_selector('#error_messages')
-    page.should have_selector('#flash_error')
+    expect(page).to have_selector('#error_messages')
+    expect(page).to have_selector('#flash_error')
   end
   
 end  

@@ -21,3 +21,5 @@ public/system
 # Ignore DS_Store
 .DS_Store
 
+# Ignore s3.yml
+/config/s3.yml
