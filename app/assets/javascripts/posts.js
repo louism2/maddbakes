@@ -3,6 +3,9 @@ $(function() {
 		setAddFileListener();
 		setRemoveFileListener();
 	}
+	if($('#edit_photos').length > 0){
+		setRemovePhotoListener();
+	}
 });
 
 function setAddFileListener(){
@@ -30,4 +33,27 @@ function setRemoveFileListener(){
 		setRemoveFileListener();
 		return false;
 	});
+}
+
+function setRemovePhotoListener(){
+	$('.destroy_photo').on('click', function(){
+		var $icon = $(this);
+		var $thumbnail_wrapper = $icon.parent();
+		var $hidden_field = $icon.next("input[type='hidden']");
+		toggleHiddenFieldValue($hidden_field);
+		toggleBackgroundColor($thumbnail_wrapper);
+  });
+}
+
+function toggleHiddenFieldValue(field){
+	parseInt(field.val()) ? field.val(0) : field.val(1);
+}
+
+function toggleBackgroundColor(wrapper){
+	var color = 'rgba(255,3,13,0.5)';
+	if(wrapper.css('background-color') == color){
+    wrapper.css('background-color', '');			
+	}else{
+    wrapper.css('background-color', color);		
+	}
 }

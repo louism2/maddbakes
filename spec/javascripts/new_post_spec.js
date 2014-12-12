@@ -1,4 +1,4 @@
-describe('Post Form', function(){
+describe('New Post', function(){
   
 	describe('adding another file to the form', function(){
     
