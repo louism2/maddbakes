@@ -1,7 +1,7 @@
-<%= form_tag("/posts/#{post_id}", method: :put) do %>
+<%= form_tag("/posts/#{post_id}", method: :put, id: 'edit_photos') do %>
 	<% photos.each_with_index do |photo, index| %>
 		<%= image_tag('red_x.png', size: '20x20', class: 'destroy_photo') %>
-		<%= hidden_field "post[photos_attributes][#{index}][_destroy]", value: 0 %>
+		<%= hidden_field_tag "post[photos_attributes][#{index}][_destroy]", 0 %>
 		<%= check_box_tag "post[photos_attribute][#{index}][header_photo]", photo.header_photo, photo.header_photo, class: 'header_photo' %>
 		<%= image_tag('#', class: 'thumbnail') %>
 	<% end %>

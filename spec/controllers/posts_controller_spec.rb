@@ -2,6 +2,8 @@ require 'rails_helper'
 require 'webmock/rspec'
 include WebmockStubs
 
+require_relative '../fixtures/test_data.rb'
+
 describe PostsController do 
 
   describe 'posts#update' do

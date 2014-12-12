@@ -25,8 +25,22 @@ module TestData
                                   
   POST_WITH_MULTIPLE_HEADER_PHOTOS = {"content"=>"Here is some content for the post Factory.  Here is some more text.", 
                                       "photos_attributes"=>{"0"=>{"image_file"=>TestData::create_valid_image, "header_photo"=>'true'},
-                                                        "1"=>{"image_file"=>TestData::create_valid_image, "header_photo"=>'true'}  
+                                                            "1"=>{"image_file"=>TestData::create_valid_image, "header_photo"=>'true'}  
                                                         }
                                      }
+                                     
+                                     
+  ## spec/controllers/posts_controller_spec ##
+  ## - used for mimicking form params with  ##
+  ## photos marked for destruction          ##                                    
+
+  def self.photos_marked_for_destruction_params(*photo_ids) 
+    photos_attributes = {}
+    photo_ids.each_with_index do |id, index| 
+      photos_attributes[index] = {id: id, _destroy: 1, header_photo: false}
+    end
+    {photos_attributes: photos_attributes}
+  end  
 
 end
+
