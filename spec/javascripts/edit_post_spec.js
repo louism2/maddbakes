@@ -16,11 +16,9 @@ describe('Edit Post', function(){
 			    loadFixtures('edit_photo_with_photos.html');	
 			    setRemovePhotoListener();
 					var $icon = $('.destroy_photo').eq(0);
-					console.log($icon);
 					var $wrapper = $icon.parent();
 					var initial_color = $wrapper.css('background-color');
 					$icon.click();
-					console.log($wrapper)
 					expect($wrapper.css('background-color')).not.toEqual(initial_color);
 				});				
 			

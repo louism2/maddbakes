@@ -1,4 +1,4 @@
-<h2><%= post.title %><h2>
+<h2><%= post.title %><%= link_to 'destroy post', "/posts/#{post.id}", method: :delete, class: 'destroy_post' if signed_in? %><h2>   
 <!-- 	implement post photo here  -->
 <p><%= post.content %><p>
 <% post.photos.each do |photo| %>
