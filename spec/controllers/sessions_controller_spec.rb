@@ -9,12 +9,12 @@ describe SessionsController do
       let(:user){ FactoryGirl.create(:new_user) }
       
       it 'sets the session cookie' do
-        post :create, session: {email: user.email, password: user.password}
-        expect(@response.cookies[:head_bitch]).not_to be_nil
+        post :create, {email: user.email, submitted_password: user.password}
+        expect(@response.cookies["head_bitch"]).not_to be_nil
       end    
     
       it 'redirects to the homepage' do 
-        post :create, session: {email: user.email, password: user.password}
+        post :create, {email: user.email, submitted_password: user.password}
         expect(@response).to redirect_to(root_path)
       end 
       

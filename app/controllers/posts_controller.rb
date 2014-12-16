@@ -1,5 +1,7 @@
 class PostsController < ApplicationController
   
+  include Session
+  
   before_action :authenticate_request, except: [:show]
   
   def new

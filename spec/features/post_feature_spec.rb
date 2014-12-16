@@ -13,6 +13,7 @@ feature 'creating a post' do
   
   scenario 'with valid data' do
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+    allow_any_instance_of(PostsController).to receive(:signed_in?).and_return(true)
     stub_s3_request
     
     visit new_post_path

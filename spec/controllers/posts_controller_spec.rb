@@ -6,7 +6,7 @@ require_relative '../fixtures/test_data.rb'
 
 describe PostsController do 
 
-  describe 'posts#update' do
+  describe '#update' do
   
     let(:user){FactoryGirl.create(:new_user)}
     let(:post){FactoryGirl.create(:post_with_photos_and_comments)}

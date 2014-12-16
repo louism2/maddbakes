@@ -40,7 +40,7 @@ private
   def authenticate_with_email_and_password(email, submitted_password) 
     user = User.find_by_email(email)
     return nil if user.nil?
-    return user if user.has_password?(submitted_password)  
+    user.has_password?(submitted_password)
   end
   
   def has_password?(submitted_password) 

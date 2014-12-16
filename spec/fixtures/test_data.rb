@@ -28,6 +28,7 @@ module TestData
                                                             "1"=>{"image_file"=>TestData::create_valid_image, "header_photo"=>'true'}  
                                                         }
                                      }
+                                                                   
                                      
                                      
   ## spec/controllers/posts_controller_spec ##
