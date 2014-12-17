@@ -62,16 +62,33 @@ feature 'destroying a post' do
     @user = FactoryGirl.create(:new_user)
     set_current_user(@user)
   end
-
-  scenario 'destroying a post and it\'s associated resources' do
-    visit post_path(@post)
+  
+  context 'is successful' do
+   
+    scenario 'destroying a post and it\'s associated resources' do
+      visit post_path(@post)
     
-    expect{
-      find('#destroy_post').click()      
-    }.to change(Post, :count).by(-1) & change(Comment, :count).by(-2) & change(Photo, :count).by(-2)
+      expect{
+        find('#destroy_post').click()      
+      }.to change(Post, :count).by(-1) & change(Comment, :count).by(-2) & change(Photo, :count).by(-2)
 
-    expect(page).to have_selector('#flash_success')
-    expect(current_path).to eq(root_path)
+      expect(page).to have_selector('#flash_success')
+      expect(current_path).to eq(root_path)
+    end
+
   end
   
+  context 'is unsuccessful' do
+    scenario 'destroying a post and it\s associated resources' do
+      allow_any_instance_of(Post).to receive(:destroy).and_return(false)
+      visit post_path(@post)
+      expect{
+        find('#destroy_post').click()      
+      }.to change(Post, :count).by(0) & change(Comment, :count).by(0) & change(Photo, :count).by(0)
+      
+      expect(page).to have_selector('#flash_error')
+      expect(current_path).to eq(post_path(@post))
+    end
+  end
+   
 end

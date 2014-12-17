@@ -43,7 +43,9 @@ class PostsController < ApplicationController
       flash[:success] = "Get. That. Shit. OUT!!!!!"
       redirect_to root_path
     else
-      
+      @comment = Comment.new
+      flash[:error] = "There was an error and the post wasn't destroyed.  Try again"
+      render 'show'
     end
   end
   
