@@ -1,1 +1,7 @@
-
+<%= form_tag '/sessions', method: 'post', id: 'sessions_form' do %>
+	<%= label_tag :email, nil, id: 'email' %>
+	<%= text_field_tag :email %>
+	<%= label_tag :password, nil, id: 'password' %>
+	<%= text_field_tag :password %>
+	<%= button_tag 'Sign In' %>
+<% end %>

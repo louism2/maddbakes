@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
   end
   
   def create
-    user = authenticate_with_email_and_password(params[:email], params[:submitted_password]) 
+    user = authenticate_with_email_and_password(params[:email], params[:password]) 
     if user
       flash[:success] = "Welcome back.  Get that money"
       sign_in(user)

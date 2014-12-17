@@ -27,7 +27,4 @@ class User < ActiveRecord::Base
                                   
   validates :access_code,         format: { with: ACCESS_CODE_FORMAT, message: 'girl, that aint the right code'}, if: Proc.new { |user| user.new_record?}
                       
-
-  
-                        
 end
