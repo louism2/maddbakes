@@ -1,6 +1,9 @@
 require "rails_helper"
 require 'webmock/rspec'
+include Session
 include WebmockStubs
+require_relative '../support/authenticate_test_user.rb'
+include AuthenticateTestUser
 
 feature 'creating a post' do
   
@@ -50,3 +53,25 @@ feature 'creating a post' do
   end
   
 end  
+
+feature 'destroying a post' do
+  
+  before(:each) do
+    stub_s3_request
+    @post = FactoryGirl.create(:post_with_photos_and_comments)
+    @user = FactoryGirl.create(:new_user)
+    set_current_user(@user)
+  end
+
+  scenario 'destroying a post and it\'s associated resources' do
+    visit post_path(@post)
+    
+    expect{
+      find('#destroy_post').click()      
+    }.to change(Post, :count).by(-1) & change(Comment, :count).by(-2) & change(Photo, :count).by(-2)
+
+    expect(page).to have_selector('#flash_success')
+    expect(current_path).to eq(root_url)
+  end
+  
+end
