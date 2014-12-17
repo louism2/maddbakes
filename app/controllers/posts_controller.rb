@@ -38,7 +38,13 @@ class PostsController < ApplicationController
   end
   
   def destroy
-    
+    @post = Post.find(params[:id])
+    if @post.destroy
+      flash[:success] = "Get. That. Shit. OUT!!!!!"
+      redirect_to root_path
+    else
+      
+    end
   end
   
 private

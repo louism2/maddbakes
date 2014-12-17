@@ -71,7 +71,7 @@ feature 'destroying a post' do
     }.to change(Post, :count).by(-1) & change(Comment, :count).by(-2) & change(Photo, :count).by(-2)
 
     expect(page).to have_selector('#flash_success')
-    expect(current_path).to eq(root_url)
+    expect(current_path).to eq(root_path)
   end
   
 end
