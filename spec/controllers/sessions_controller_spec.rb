@@ -20,6 +20,15 @@ describe SessionsController do
       
     end
     
+    context 'an invalid email and password' do
+    
+      it 'renders the "new" template' do
+        post :create, {email: 'bad_email', submitted_password: 'bad_password'}
+        expect(response).to render_template(:new)
+      end
+      
+    end
+    
   end
 
 end
