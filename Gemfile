@@ -11,7 +11,7 @@ gem 'rmagick', '~> 2.13.1'
 
 gem 'rvm-capistrano', group: :development
 
-group :test, :development do
+group :test do
   gem "factory_girl_rails"
   gem "rspec-rails"  
   gem "rspec-mocks"
