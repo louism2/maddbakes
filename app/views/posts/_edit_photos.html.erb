@@ -4,7 +4,7 @@
 			<%= image_tag('red_x.png', size: '20x20', class: 'destroy_photo') %>
 			<%= hidden_field_tag "post[photos_attributes][#{index}][_destroy]", 0 %>
 			<%= check_box_tag "post[photos_attribute][#{index}][header_photo]", photo.header_photo, photo.header_photo, class: 'header_photo' %>
-			<%= image_tag('#', class: 'thumbnail') %>
+			<%= image_tag(build_s3_url(photo.id), class: 'thumbnail') %>
 	  </span>
 	<% end %>
 <% end %>

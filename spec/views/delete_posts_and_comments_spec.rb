@@ -18,7 +18,7 @@ describe 'posts/show.html.erb' do
       assign(:comment, Comment.new)
       render
       page = Capybara::Node::Simple.new(rendered)
-      expect(page.has_css?('.destroy_post')).to eq(true)
+      expect(page.has_css?('#destroy_post')).to eq(true)
     end
     
     it 'shows a link to delete a comment' do
