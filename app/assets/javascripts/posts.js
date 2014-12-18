@@ -5,6 +5,7 @@ $(function() {
 	}
 	if($('#edit_photos').length > 0){
 		setRemovePhotoListener();
+		setHeaderPhotoListener();
 	}
 });
 
@@ -18,6 +19,21 @@ function setAddFileListener(){
 		setRemoveFileListener();
 		return false;
 	});
+}
+
+function setHeaderPhotoListener(){
+  var $checkboxes = $('input[type="checkbox"]');
+	$checkboxes.on('change', function(e){
+		var $selected = $(this);
+		if($selected.prop('checked')){
+			toggleCheckboxes($checkboxes, $selected);
+		}
+	});
+}
+
+function toggleCheckboxes($checkboxes, $selected){
+	$checkboxes.attr('checked',false);
+	$selected.attr('checked',true);
 }
 
 function setRemoveFileListener(){
