@@ -9,6 +9,27 @@ describe Comment do
     end
   end
   
+  describe 'callbacks' do
+    
+    let(:comment){ FactoryGirl.build(:comment) }
+    
+    describe 'before_save callback fails' do
+      it 'does not call any callbacks after the one the returns false' do
+        expect(comment).to receive(:first_call)
+        allow(comment).to receive(:second_call).and_return(false)
+        expect(comment).not_to receive(:third_call)
+        comment.save
+      end
+      
+      it 'does not call any of the after_save callbacks' do
+        expect(comment).not_to receive(:after_first)
+        exppect(comment).not_to receive(:after_second)
+        comment.save
+      end
+    end
+    
+  end
+  
   describe 'validations' do
     
     let(:comment){ FactoryGirl.build(:comment)}
