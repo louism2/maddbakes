@@ -19,7 +19,6 @@ group :test, :development do
   gem "jasmine"
   gem 'jasmine-jquery-rails'
   gem 'capybara'
-  #gem 'sinon-rails'
 end
 
 gem 'sass-rails', '~> 4.0.3'

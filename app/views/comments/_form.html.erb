@@ -1,7 +1,9 @@
 <%= form_for comment, html: {id: 'comment_form'} do |f| %>
 	<%= render partial: 'shared/error_messages', object: comment.errors.messages if comment.errors.any?%>
+	<%= f.label :content, 'Leave a Comment'%>
 	<%= f.text_area :content %>
 	<%= f.hidden_field :post_id, value: parent_id %>
+  <%= f.label :commenter_name, 'Name' %>
 	<%= f.text_field :commenter_name %>
 	<%= f.submit 'Submit Comment' %>
 <% end %>	

@@ -1,0 +1,31 @@
+.title_wrapper, .post_content{
+	font-family: "calluna-sans", sans-serif;
+}
+
+h2 a:visited{
+	color: black;	
+}
+
+#post_header{
+	margin-top: 7em;
+}
+
+.post_title{
+	font-size: 2em;
+	color: black;
+	text-decoration: none;
+}
+
+.post_content{	
+	font-size: 1.2em;
+	margin-bottom: 4em;
+}
+
+.header_photo_wrapper{
+}
+
+.header_photo{
+	width: 100%;
+	left: 10%;
+	right: 10%;
+}

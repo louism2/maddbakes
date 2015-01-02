@@ -1,4 +1,5 @@
 class Comment < ActiveRecord::Base
+
   
   belongs_to :post
   
@@ -9,4 +10,6 @@ class Comment < ActiveRecord::Base
   validates :post_id,         presence: true,
                               numericality: true
   
+
+
 end

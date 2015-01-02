@@ -1,0 +1,50 @@
+.comment_content{
+	width: 74%;
+	margin: 0 auto;
+	line-height: 1.3em;
+	padding: 10px 3% 0 3%;
+	font-family: arial;
+	background-color: rgba(232, 232, 232, 0.9);
+}
+
+.comment_content:last-of-type{
+	padding-bottom: 10px;
+}
+
+.comment_content > span{
+	font-size: 1.2em;
+  font-weight: bold;
+	padding-right: 1em;
+}
+
+#comment_form{
+	width: 74%;
+	margin: 0 auto;
+	margin-bottom: 20px;
+	padding: 20px 3% 20px 3%;
+	border-top: 1px solid white;
+	background-color: rgba(232, 232, 232, 0.9);
+}
+
+#comment_form label{
+  font-weight: bold;
+	font-size: 1.2em;
+}
+
+#comment_form input, textarea{
+	display: block;
+	margin-bottom: 10px;
+	font-size: 1.1em;
+/*	border-color: black;*/
+}
+
+#comment_form input[type='text']{
+	width: 20em;
+}
+
+	
+
+#comment_content{
+	width: 80%;
+}
+

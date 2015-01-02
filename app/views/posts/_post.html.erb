@@ -1,13 +1,17 @@
-<h2><%= post.title %><%= link_to 'destroy post', "/posts/#{post.id}", method: :delete, id: 'destroy_post' if signed_in? %><h2>   
-<!-- 	implement post photo here  -->
-<p><%= post.content %><p>
-<% post.photos.each do |photo| %>
-	<%= render partial: 'photos/photo', object: photo %>
-<% end %>
-<% post.comments.each do |user_comment| %>
-	<%= render partial: 'comments/comment', object: user_comment %>
-<% end %>
-<%= render partial: 'comments/form', locals: {comment: comment, parent_id: post.id} %>
+<%= build_post_title(post) %>
+<%= display_header_photo(post) %>
+<p class='post_content'><%= post.content %></p>
+<div id='thumbnail_wrapper' style='display:none;'>
+	<% post.photos.each do |photo| %>
+		<%= render partial: 'photos/thumbnail', object: photo %>
+	<% end %>
+</div>
+</div id='comment_wrapper'>
+	<% post.comments.each do |user_comment| %>
+		<%= render partial: 'comments/comment', object: user_comment %>
+	<% end %>
+	<%= render partial: 'comments/form', locals: {comment: comment, parent_id: post.id} %>
+</div>
 	
 
 	

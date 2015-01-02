@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   
 private 
   
+  # called in each controller
   def authenticate_request
     unless signed_in?
       flash[:error] = "You must be signed in to access the application!"

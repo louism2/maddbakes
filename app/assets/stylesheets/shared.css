@@ -1,0 +1,74 @@
+/*  Site wide styles */
+@import url(http://fonts.googleapis.com/css?family=Amatic+SC:700);
+
+body{
+	margin: 0;
+	font-size: 14px;
+	overflow-x: hidden;
+	font-family: arial;
+}
+
+a{
+	color: blue;
+}
+
+a:visited{
+	color: blue;
+}
+
+h2{
+	margin: 0;
+}
+
+#content_wrapper{
+	width: 80%;
+	margin: 0 auto;
+}
+
+/*  Styles for header  */
+
+#header{
+	position: fixed;
+	background-color: rgba(46,48,58,0.99);
+	height: 7em;
+	top: 0;
+	left: 0;
+	right: 0;
+	text-align: center;
+}
+ 
+  #header > span{
+  	display: inline-block;
+		height: 100%;
+		vertical-align: middle;
+		line-height: 7em;
+  }
+	
+	#header > span > a{
+		font-size: 3em;
+		vertical-align: middle;
+		padding: 0 10% 0 10%;
+		color: white;
+		font-family: 'Amatic SC', cursive;
+	}
+
+#logo{
+	position: fixed;
+	z-index: 2;
+	top: .2em;
+	left: 4%;
+	display: inline-block;
+	height: 1.8em;
+	width: 1.8em;
+	line-height: 1.8em;
+	border-radius: 5em;
+	background-color: #9E0508;
+	color: white;
+	vertical-align: middle;
+	font-family: 'Amatic SC', cursive;
+	font-weight: 700;
+	text-align: center;
+	font-size: 5em;
+}
+
+

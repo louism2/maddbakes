@@ -1,33 +1,11 @@
-body{
-	margin: 0;
-	font-size: 14px;
-	overflow-x: hidden;
+#container{
+	position: absolute;
+	left: 0;
+	right: 0;
 }
 
-	#container{
-		margin: 0 auto;
-		width: 100%;
-		max-width: 1000px;
-	}
-	
-	.banner_image{
-		left: 10%;
-		max-width: 700px;
-	}
-	
-	.pane{
-		position: absolute;
-		width: 10%;
-		height: 400px;
-		background-color: white;
-		display: inline-block;
-	}
-	
-	#pane_left{
-		left: 0%;
+.banner_image{
+	width: 100%;
+}
 
-	}
 
-	#pane_right{
-		left: 90%;	
-	}

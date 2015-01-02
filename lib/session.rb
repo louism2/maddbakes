@@ -4,6 +4,11 @@ module Session
     !current_user.nil?
   end
   
+  def self.included m
+    return unless m < ActionController::Base
+    m.helper_method :signed_in? 
+  end
+  
   def sign_in(user)
     cookies.permanent.signed[:head_bitch] = [user.id, user.salt] 
     self.current_user=(user) 

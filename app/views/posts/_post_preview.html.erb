@@ -1,3 +1,3 @@
-<h2><%= post_preview.title %><h2>
-<!-- 	implement post photo here  -->
-<p><%= truncate_content(post_preview.content) %><p>
+<%= build_post_title_link(post_preview) %>
+<%= display_header_photo(post_preview) %>
+<p class='post_content'><%= truncate_content(post_preview.content, post_preview) %></p>

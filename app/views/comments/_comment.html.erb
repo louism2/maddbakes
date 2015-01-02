@@ -1,2 +1,1 @@
-<p class='comment_content'><span class='commenter_name'><%= comment.commenter_name %></span><%= comment.content %></p>
-<%= link_to 'destroy comment', "/comments/#{comment.id}", method: :delete, class: 'destroy_comment' if signed_in? %>
+<p class='comment_content'><span><%= comment.commenter_name %></span><%= comment.content %><%= link_to 'destroy comment', "/comments/#{comment.id}", method: :delete, class: 'destroy_comment' if signed_in? %></p>

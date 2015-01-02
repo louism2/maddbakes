@@ -15,4 +15,8 @@ module ApplicationHelper
     "<ul>#{list_contents}</ul>"
   end  
   
+  def logo
+    "<span id='logo'>MB</span>".html_safe
+  end
+  
 end

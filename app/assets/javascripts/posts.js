@@ -1,4 +1,14 @@
 $(function() {
+	if($('.post_title').length > 0){
+		var $post_title = $('.post_title');
+		$post_title.hover(function(){
+			$(this).css({'text-decoration':'underline'});
+		})
+		$post_title.mouseout(function(){
+			$(this).css({'text-decoration':''});
+		})
+	}
+	
 	if($('#post_form').length > 0){
 		setAddFileListener();
 		setRemoveFileListener();

@@ -1,20 +1,20 @@
 $(document).ready(function(){
 	if($('#container').length > 0){
-		var INITIAL_STYLE = {position: 'absolute', visibility: 'hidden', width: '80%', height: 'auto', left: '10%'};
-		var MAX_IMAGE_WIDTH = 700;
 		
 		$window = $(window);
-
+		$body = $('body');
+		
+		var INITIAL_STYLE = {position: 'absolute', visibility: 'hidden', width: $window.width()};
+		
 		var image_arr = [];
 		var image_array = ['images/de_la.jpg','images/pete.jpg','images/tribe.jpg'];
 		var left_image_index = 0;
-		var image_decrement = 12;
+		var image_decrement = 22;
 		var tallestImageHeight = 0;
+		var em_height = setEmHeight();
 		
 		var $container = $('#container');
-		var $pane = $('.pane');
-		var $pane_left = $('#pane_left');
-
+		var $container_buffer = $('#container_buffer');
 		var $left_image;
 		var $right_image;
 
@@ -36,26 +36,23 @@ $(document).ready(function(){
 			}else{
 				$right_image = $(image_arr[0]);
 			}
-			var imageStart = $('.pane').filter('#pane_right').offset().left
-			$right_image.css({visibility: 'visible', left: imageStart});
+			$right_image.css({visibility: 'visible', left: $window.width()});
 		}
 
 		function slideThemShits(){
 			var left_image_offset  = $left_image.offset().left;
 			var right_image_offset = $right_image.offset().left;
 
-			if(right_image_offset > $pane_left.width()){
+			if(right_image_offset > 0){
 				$left_image.offset({left: left_image_offset-image_decrement});
 				$right_image.offset({left: right_image_offset-image_decrement});
 				setTimeout(slideThemShits,40);
 			}else{
-				$right_image.offset({left: $pane_left.width()});
+				$right_image.offset({left: 0});
 				$left_image.css({visibility: 'hidden'});
 				left_image_index == image_arr.length-1 ? left_image_index = 0 : left_image_index++;
 			}
 		}
-
-		window.rotate = rotateImages;
 
 		function insertImages(){
 			for(var x=0;x<image_array.length;x++){
@@ -63,12 +60,11 @@ $(document).ready(function(){
 				image.onload = function() {
 					var $orig_img = $(this);
 					var $full_img = $orig_img.clone().css(INITIAL_STYLE).addClass('banner_image');
-					if($('img').length < 1){
+					if($('.banner_image').length < 1){
 						$full_img.css({visibility: 'visible'});	
 					}
-				    $pane_left.before($full_img);
-					$window.trigger('resize');
-					setPaneHeight();
+					$full_img.appendTo($container).css({width: '100%'});
+					setContainerHeight();
 					image_arr.push($full_img)
 				}
 				image.src = image_array[x];
@@ -76,33 +72,26 @@ $(document).ready(function(){
 		}
 
 		$window.resize(function(){
-			setPaneHeight();
-			if(bannerImageAtMaxWidth()){
-				var paneWidth = getComputedPaneWidth();		
-				$pane.css({width: paneWidth}).filter('#pane_right').css({left: paneWidth+MAX_IMAGE_WIDTH});
-				$('.banner_image').filter(':visible').css({left: paneWidth+'px'})
-			}else{
-				$('.banner_image').filter(':visible').css({left: '', width: '80%'});
-				$pane.css({width: '10%'}).filter('#pane_right').css({left: '', right: 0});
-			}
+		  em_height = setEmHeight();
+			setContainerHeight();
 		});
 
-		function bannerImageAtMaxWidth(){
-			return $('.banner_image').filter(':visible').width() == MAX_IMAGE_WIDTH ? true : false;
-		}
-
-		function getComputedPaneWidth(){
-			return ($window.width()-MAX_IMAGE_WIDTH)/2;
+		function setEmHeight(){
+			return $window.width() / parseFloat($body.css("font-size"));
 		}
 		
-		function setPaneHeight(){
+		function emMultiplier(factor){
+			return em_height*factor
+		}
+		
+		function setContainerHeight(){
 			tallestImageHeight = 0;
 			$('.banner_image').each(function(index){
 				var height = $(this).height();
 				setTallestImageHeight(height);
 			});
 			$container.css({height: tallestImageHeight});
-			$pane.css({height: tallestImageHeight});
+			$container_buffer.css({height: tallestImageHeight+emMultiplier(2)});
 		}
 		
 		function setTallestImageHeight(height){
