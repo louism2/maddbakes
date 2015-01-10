@@ -1,8 +1,8 @@
 module PostsHelper
   
-  def truncate_content(content, post)
-    return content if content.length <= 500
-    content.slice(0,497).concat('...').concat(link_to 'read more', post).html_safe
+  def truncate_content(post)
+    return post.content if post.content.length <= 500
+    post.content.slice(0,497).concat('...').concat(link_to 'read more', post).html_safe
   end  
   
   def display_photos(photos)
@@ -18,7 +18,7 @@ module PostsHelper
   end  
   
   def build_post_title(post)
-    "<h2 class='title_wrapper' id='post_header'><span class='post_title'>#{post.title}</span>#{format_date(post.created_at)}</h2>".html_safe    
+    "<h2 class='title_wrapper' id='post_header'><span class='post_title'>#{post.title}</span>#{format_date(post.created_at)}</h2>#{link_to 'delete post?', post_path(post), method: 'delete', id: 'destroy_post' if signed_in?}".html_safe    
   end
   
   def format_date(datetime)
