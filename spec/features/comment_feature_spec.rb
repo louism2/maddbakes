@@ -58,7 +58,7 @@ feature 'destroying a comment' do
   
   scenario 'clicking the destroy_comment link' do
     visit post_path(@post)
-    link = find('.destroy_comment:first-of-type')
+    link = first('.destroy_comment')
     expect{
       link.click()
     }.to change(Comment, :count).by(-1)
