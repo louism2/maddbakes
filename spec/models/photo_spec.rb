@@ -70,4 +70,23 @@ describe Photo do
     end
   end
   
+  describe '::all_photos_by_year' do
+    
+    before(:each) do
+      stub_s3_request
+      4.times{ FactoryGirl.create(:photo, cover_photo: true) }
+      photos = Photo.limit(2)
+      photos.each do |photo|
+        date = photo.image_file_updated_at
+        photo.image_file_updated_at = date+366 
+      end  
+    end
+    
+    it 'groups the photos by month' do
+      photos_hash = Photo.all_photos
+      expect(photos_hash.keys.length).to eq(2)
+    end
+     
+  end
+  
 end
