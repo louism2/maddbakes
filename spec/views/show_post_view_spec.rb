@@ -6,6 +6,7 @@ include Session
 describe 'posts/show.html.erb' do
   
   before(:each) do
+    Capybara.ignore_hidden_elements = false
     stub_s3_request
     allow(view).to receive(:signed_in?).and_return(true)
     FactoryGirl.create(:post_with_photos)
@@ -18,7 +19,7 @@ describe 'posts/show.html.erb' do
       assign(:post, @post)
       render
       page = Capybara::Node::Simple.new(rendered)
-      expect(page.has_css?('img.thumbnail')).to be(true)
+      expect(page.assert_selector('img.thumbnail')).to be(true)
     end
   end
   

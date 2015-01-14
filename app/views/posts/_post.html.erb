@@ -2,8 +2,12 @@
 <%= display_header_photo(post) %>
 <p class='post_content'><%= post.content %></p>
 <div id='photos_wrapper' style='display:none;'>
-	<% post.photos.each do |photo| %>
-		<%= render partial: 'photos/thumbnail', object: photo %>
+	<% if post.photos.any? %>
+		<% post.photos.each do |photo| %> 
+		  <%= render partial: 'photos/thumbnail', object: photo %>
+		<% end %>	
+	<% else %>	
+	  <p>No photos to display</p>
 	<% end %>
 </div>
 </div id='comment_wrapper'>

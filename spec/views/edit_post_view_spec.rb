@@ -25,7 +25,14 @@ describe 'posts/edit.html.erb' do
       assign(:post, @post)
       render
       page = Capybara::Node::Simple.new(rendered)
-      expect(page.has_css?('input[type="checkbox"]', count: 2)).to be(true)
+      expect(page.has_css?('input.header_photo')).to be(true)
+    end
+    
+    it 'the photos have a "make cover photo" checkbox' do
+      assign(:post, @post)
+      render
+      page = Capybara::Node::Simple.new(rendered)
+      expect(page.has_css?('input.cover_photo', count: 2)).to be(true)
     end
     
     it 'the photos have a "destroy photo" icon' do

@@ -13,15 +13,20 @@ describe 'photos/index.html.erb' do
     end 
     
     context 'when a user is signed in' do
+      
+      before(:each) do
+        allow(view).to receive(:signed_in?).and_return(true)
+      end
+      
       it 'displays the .delete_photo icon' do
-        assign(:photos, @photos)
+        assign(:photos_hash, @photos)
         render
         page = Capybara::Node::Simple.new(rendered)
         expect(expect(page.has_css?('.destroy_photo')).to be(true))
       end
       
       it 'displays the .cover_photo checkbox' do
-        assign(:photos, @photos)
+        assign(:photos_hash, @photos)
         render
         page = Capybara::Node::Simple.new(rendered)
         expect(expect(page.has_css?('.cover_photo')).to be(true))  
@@ -30,14 +35,14 @@ describe 'photos/index.html.erb' do
     
     context 'when there is no current_user' do
       it 'the .delete_photo icon is not displayed' do
-        assign(:photos, @photos)
+        assign(:photos_hash, @photos)
         render
         page = Capybara::Node::Simple.new(rendered)
-        expect(expect(page.has_css?('.cover_photo')).to be(false))  
+        expect(expect(page.has_css?('.delete_photo')).to be(false))  
       end
       
       it 'the .cover_photo checkbox is not displayed' do
-        assign(:photos, @photos)
+        assign(:photos_hash, @photos)
         render
         page = Capybara::Node::Simple.new(rendered)
         expect(expect(page.has_css?('.cover_photo')).to be(false))  
