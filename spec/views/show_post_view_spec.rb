@@ -18,7 +18,7 @@ describe 'posts/show.html.erb' do
       assign(:post, @post)
       render
       page = Capybara::Node::Simple.new(rendered)
-      expect(page.has_css?('img.thumbnail', :count => 2)).to be(true)
+      expect(page.has_css?('img.thumbnail')).to be(true)
     end
   end
   
@@ -28,7 +28,7 @@ describe 'posts/show.html.erb' do
       assign(:post, @post)
       render
       page = Capybara::Node::Simple.new(rendered)
-      expect(page.has_text?('No photos to display'))
+      expect(page.has_text?('No photos to display')).to be(true)
     end  
   end
 end

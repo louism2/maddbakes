@@ -12,7 +12,6 @@ feature 'creating a comment' do
   let(:user){ FactoryGirl.create(:new_user) }
 
   scenario 'with valid comment data' do
-    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
     visit post_path(post)
 
     within('#comment_form') do

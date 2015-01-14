@@ -33,6 +33,7 @@ FactoryGirl.define do
   
   factory :photo do
     post
+    cover_photo 'false'
     image_file File.new("#{Rails.root}/spec/fixtures/honda.jpg")
   end
   

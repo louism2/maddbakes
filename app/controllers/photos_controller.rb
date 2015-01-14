@@ -1,5 +1,9 @@
 class PhotosController < ApplicationController
   
+  def index
+    @photos_hash = Photo.all_photos_by_year
+  end
+  
   def new
     
   end

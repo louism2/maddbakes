@@ -17,4 +17,9 @@ class Photo < ActiveRecord::Base
     false
   end
   
+  def self.all_photos_by_year
+    Photo.all.order(image_file_updated_at: :desc).group_by{ |photo| photo.image_file_updated_at.year }
+  end  
+  
+  
 end

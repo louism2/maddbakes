@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20141219193625) do
     t.integer  "image_file_file_size"
     t.datetime "image_file_updated_at"
     t.boolean  "header_photo",            default: false
+    t.boolean  "cover_photo",             default: false
   end
 
   add_index "photos", ["post_id", "header_photo"], name: "unique_header_photo", unique: true, where: "(header_photo IS TRUE)", using: :btree

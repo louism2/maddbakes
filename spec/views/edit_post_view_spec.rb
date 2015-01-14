@@ -1,6 +1,7 @@
 require 'rails_helper'
 require 'webmock/rspec'
 include WebmockStubs
+include Session
 
 describe 'posts/edit.html.erb' do
   
@@ -8,6 +9,7 @@ describe 'posts/edit.html.erb' do
     
     before(:each) do
       stub_s3_request
+      allow(view).to receive(:signed_in?).and_return(true)
       FactoryGirl.create(:post_with_photos)
       @post = Post.last
     end

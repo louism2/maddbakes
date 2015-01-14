@@ -1,8 +1,8 @@
 module PostsHelper
   
-  def truncate_content(post)
-    return post.content if post.content.length <= 500
-    post.content.slice(0,497).concat('...').concat(link_to 'read more', post).html_safe
+  def truncate_content(content, id)
+    return content if content.length <= 500
+    content.slice(0,497).concat('...').concat(link_to 'read more', post_path(id)).html_safe
   end  
   
   def display_photos(photos)
@@ -22,6 +22,7 @@ module PostsHelper
   end
   
   def format_date(datetime)
+    logger.debug "<<<<<<<< datetime : #{datetime.to_s}"
     datetime.strftime('%a %d %b %Y').to_s
   end
   

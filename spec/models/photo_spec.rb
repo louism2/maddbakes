@@ -74,16 +74,15 @@ describe Photo do
     
     before(:each) do
       stub_s3_request
-      4.times{ FactoryGirl.create(:photo, cover_photo: true) }
+      4.times{ FactoryGirl.create(:photo) }
       photos = Photo.limit(2)
       photos.each do |photo|
-        date = photo.image_file_updated_at
-        photo.image_file_updated_at = date+366 
+        photo.image_file_updated_at = DateTime.new(2001,2,3,4,5,6,'+7')
       end  
     end
     
     it 'groups the photos by month' do
-      photos_hash = Photo.all_photos
+      photos_hash = Photo.all_photos_by_year
       expect(photos_hash.keys.length).to eq(2)
     end
      

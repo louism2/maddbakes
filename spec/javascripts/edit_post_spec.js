@@ -35,7 +35,7 @@ describe('Edit Post', function(){
           expect($icon.next("input[type='hidden']").val()).toEqual("0"); 
         });
       
-        it('removes the red background if the icon', function(){
+        it('removes the red background of the icon', function(){
           loadFixtures('edit_photos.html');  
           setRemovePhotoListener();
           var $icon = $('.destroy_photo').eq(0);

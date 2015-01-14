@@ -1,0 +1,7 @@
+<h3>Photos</h3>
+<% @photos_hash.each do |year, photos_arr| %>
+  <h4><%= year %></h4>
+	<% photos_arr.each_ do |photo| %>
+    <%= render partial: 'photos/thumbnail', object: photo %>
+	<% end %>
+<% end %>
