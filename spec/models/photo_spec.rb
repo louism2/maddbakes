@@ -64,7 +64,6 @@ describe Photo do
       FactoryGirl.create(:post_with_photos_and_comments)
     end
     
-    
     it 'saves images to s3' do
       expect(WebMock).to have_requested(:put, /.*amazonaws.*/).twice
     end
@@ -78,10 +77,12 @@ describe Photo do
       photos = Photo.limit(2)
       photos.each do |photo|
         photo.image_file_updated_at = DateTime.new(2001,2,3,4,5,6,'+7')
+        photo.save
       end  
+      
     end
     
-    it 'groups the photos by month' do
+    it 'groups the photos by year' do
       photos_hash = Photo.all_photos_by_year
       expect(photos_hash.keys.length).to eq(2)
     end
