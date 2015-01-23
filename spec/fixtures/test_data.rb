@@ -42,6 +42,21 @@ module TestData
     end
     {photos_attributes: photos_attributes}
   end  
+  
+  def self.post_link_length(id)
+    "<a href=\'/posts/#{id}\'>read more</a>".length
+  end  
+  
+  def self.post_link(id)
+    "<a href='/posts/#{id}'>read more</a>"
+  end  
+  
+  def self.slice_anchor_tag(str)
+    index = str.index('<')
+    len = (str.length) - index
+    str.slice(index, len).gsub!('"','\'')
+  end  
+    
 
 end
 
