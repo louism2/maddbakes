@@ -1,8 +1,12 @@
 module PostsHelper
   
   def truncate_content(content, id)
-    return content if content.length <= 500
-    content.slice(0,497).concat('...').concat(link_to 'read more', post_path(id)).html_safe
+    if content.length <= 500
+      content.concat('\n'+build_post_link(id)).html_safe
+    else
+      content.slice(0,497).concat('...').concat(build_post_link(id)).html_safe  
+    end  
+    
   end  
   
   def display_photos(photos)
@@ -22,7 +26,6 @@ module PostsHelper
   end
   
   def format_date(datetime)
-    logger.debug "<<<<<<<< datetime : #{datetime.to_s}"
     datetime.strftime('%a %d %b %Y').to_s
   end
   
@@ -30,5 +33,11 @@ module PostsHelper
     return unless post.header_photo
     "<div class='header_photo_wrapper'>#{image_tag build_s3_url(post.header_photo.id), alt: 'header photo', class: 'header_photo'}</div>".html_safe
   end  
+  
+private
+
+  def build_post_link(id)
+    link_to 'read more', post_path(id)
+  end    
   
 end
