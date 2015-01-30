@@ -1,37 +1,31 @@
 $(function() {
 	
 	if($('.destroy_photo').length > 0){
-		setRemovePhotoListener();
-		setHeaderPhotoListener();
+		window.edited_photos = {deleted_photos:[],cover_photos:[],header_photos:[]}
+		setDestroyPhotoListener();
 	}
 	
 });
 
-function setRemovePhotoListener(){
+function setDestroyPhotoListener(){
 	$('.destroy_photo').on('click', function(){
-		var $icon = $(this);
-		var $thumbnail_wrapper = $icon.parent();
-		toggleBackgroundColor($thumbnail_wrapper);
-  });
-}
-
-function setHeaderPhotoListener(){
-  var $checkboxes = $('input[type="checkbox"]');
-	$checkboxes.on('change', function(e){
-		var $selected = $(this);
-		if($selected.prop('checked')){
-			toggleCheckboxes($checkboxes, $selected);
-		}
+		var $wrapper = $(this).closest('.thumbnail_wrapper');
+		var $hidden_field = $(this).next('.destroy_photo_hidden_field');
+		toggleThumbnailBackground($wrapper);
+		toggleHiddenFieldValue($hidden_field);
 	});
 }
 
-function toggleCheckboxes($checkboxes, $selected){
-	$checkboxes.attr('checked',false);
-	$selected.attr('checked',true);
+function toggleThumbnailBackground($wrapper){
+	if($wrapper.css('background-color') != 'rgba(0, 0, 0, 0)'){
+		$wrapper.removeClass('deleted');
+	}else{
+		$wrapper.addClass('deleted');
+	}
 }
 
 function toggleHiddenFieldValue(field){
-	parseInt(field.val()) ? field.val(0) : field.val(1);
+	field.val() === 'true' ? field.val('false') : field.val('true');
 }
 
 function toggleBackgroundColor(wrapper){
