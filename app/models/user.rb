@@ -25,6 +25,6 @@ class User < ActiveRecord::Base
   validates :encrypted_password,  presence: true,
                                   allow_nil: false
                                   
-  validates :access_code,         format: { with: ACCESS_CODE_FORMAT, message: 'girl, that aint the right code'}, if: Proc.new { |user| user.new_record?}
+  validates :access_code,         format: { with: ACCESS_CODE_FORMAT, message: 'girl, that aint the right code' }, if: Proc.new { |user| user.new_record?}
                       
 end

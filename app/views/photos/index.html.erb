@@ -1,4 +1,5 @@
 <h3>Photos</h3>
+<%= image_alteration_banner if signed_in? %>
 <% @photos_hash.each do |year, photos_arr| %>
   <h4><%= year %></h4>
 	<% photos_arr.each do |photo| %>

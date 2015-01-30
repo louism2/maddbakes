@@ -1,5 +1,0 @@
-<%= form_tag("/posts/#{post_id}", method: :put, id: 'edit_photos') do %>
-	<% photos_arr.each do |photo| %>
-    <%= render partial: 'photos/thumbnail', object: photo %>
-	<% end %>
-<% end %>
