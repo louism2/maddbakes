@@ -1,5 +1,5 @@
 .comment_content{
-	width: 74%;
+/*	width: %;*/
 	margin: 0 auto;
 	line-height: 1.3em;
 	padding: 10px 3% 0 3%;
@@ -18,9 +18,7 @@
 }
 
 #comment_form{
-	width: 74%;
 	margin: 0 auto;
-	margin-bottom: 20px;
 	padding: 20px 3% 20px 3%;
 	border-top: 1px solid white;
 	background-color: rgba(232, 232, 232, 0.9);
@@ -35,14 +33,11 @@
 	display: block;
 	margin-bottom: 10px;
 	font-size: 1.1em;
-/*	border-color: black;*/
 }
 
 #comment_form input[type='text']{
 	width: 20em;
 }
-
-	
 
 #comment_content{
 	width: 80%;

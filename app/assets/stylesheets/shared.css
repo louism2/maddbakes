@@ -28,13 +28,14 @@ h2{
 /*  Styles for header  */
 
 #header_placeholder{
-	height: 7em;
+	height: 9em;
 	width: 100%;
 	margin-bottom: 2em;
 }
 
 #header{
 	position: fixed;
+	z-index: 2;
 	background-color: rgba(46,48,58,0.99);
 	height: 7em;
 	top: 0;
@@ -60,7 +61,7 @@ h2{
 
 #logo{
 	position: fixed;
-	z-index: 2;
+	z-index: 3;
 	top: .2em;
 	left: 4%;
 	display: inline-block;

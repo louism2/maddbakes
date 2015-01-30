@@ -1,0 +1,30 @@
+#image_alteration_banner{
+	display: none;
+	padding: 1em 0 1em 0;
+	background-color: rgba(176,23,31,.2);
+	border-top: 1px solid rgb(176,23,31);
+	border-bottom: 1px solid rgb(176,23,31);
+}
+
+#confirm_photo_changes_button{
+	margin-top: 1em;
+}
+
+.thumbnail_wrapper{
+	display: inline-block;
+	width: 29%;
+	margin: 0 2% 0 2%;
+
+	ul{
+	  padding: 0;
+		list-style: none;
+  }
+	
+	.photo_index_box{
+		display: inline;
+	}
+}
+
+.thumbnail{
+	width: 100%;
+}

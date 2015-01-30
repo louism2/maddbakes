@@ -6,10 +6,6 @@ h2 a:visited{
 	color: black;	
 }
 
-#post_header{
-	margin-top: 7em;
-}
-
 .post_title{
 	font-size: 2em;
 	color: black;
@@ -29,3 +25,44 @@ h2 a:visited{
 	left: 10%;
 	right: 10%;
 }
+
+.tab{
+	position: relative;
+	display: inline-block;
+	height: 1.4em;
+	background-color: white;
+	font-size: 1.3em;
+	padding: .2em .5em 0em .5em;
+	border-top: .1em solid black;
+	border-left: .1em solid black;
+	border-right: .1em solid black;	
+	border-top-left-radius: .4em;
+	border-top-right-radius: .4em;
+}
+
+.selected_tab{
+	z-index: 1;
+	height: 1.5em;	
+}
+
+.tab:nth-of-type(2){
+	right: .3em;
+}
+
+.photos_and_comments_wrapper{
+	margin-bottom: 2em;
+}
+
+#comments_wrapper{
+		border: .1em solid black;
+}
+
+#photos_wrapper{
+		border: .1em solid black;
+}
+
+
+
+
+
+
