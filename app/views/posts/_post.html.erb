@@ -1,7 +1,10 @@
-<%= build_post_title(post) %>,
+<%= build_post_title(post) %>
 <%= display_header_photo(post) %>
 <p class='post_content'><%= post.content %></p>
-<div id='photos_wrapper' style='display:none;'>
+<span class='tab selected_tab'>Photos</span>
+<span class='tab'>Comments</span>
+<div id='photos_wrapper' class='photos_and_comments_wrapper'>
+	<%= image_alteration_banner if signed_in? %>
 	<% if post.photos.any? %>
 		<% post.photos.each do |photo| %> 
 		  <%= render partial: 'photos/thumbnail', object: photo %>
@@ -10,7 +13,7 @@
 	  <p>No photos to display</p>
 	<% end %>
 </div>
-</div id='comment_wrapper'>
+<div id='comments_wrapper' class='photos_and_comments_wrapper' style='display:none;'>
 	<% post.comments.each do |user_comment| %>
 		<%= render partial: 'comments/comment', object: user_comment %>
 	<% end %>

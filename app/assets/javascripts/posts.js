@@ -9,41 +9,26 @@ $(function() {
 		})
 	}
 	
+	if($('.tab').length > 0){
+	  setTabListener();	
+	}
+	
 	if($('#post_form').length > 0){
 		setAddFileListener();
 		setRemoveFileListener();
 	}
-	if($('#edit_photos').length > 0){
-		setRemovePhotoListener();
-		setHeaderPhotoListener();
-	}
+	
 });
 
-function setAddFileListener(){
-	var $file_field = $(".file_field_container");
-	$('#add_file_field').on('click', function(){
-		var $cloned_file_field = $file_field.clone();
-		var timestamp = new Date().getTime();
-		$cloned_file_field.find('input').attr('name', 'post[photos_attributes]['+timestamp+'][image_file]');
-		$(this).before($cloned_file_field);
-		setRemoveFileListener();
-		return false;
-	});
-}
-
-function setHeaderPhotoListener(){
-  var $checkboxes = $('input[type="checkbox"]');
-	$checkboxes.on('change', function(e){
-		var $selected = $(this);
-		if($selected.prop('checked')){
-			toggleCheckboxes($checkboxes, $selected);
+function setTabListener(){
+	$('.tab').on('click', function(){
+		var $clicked_tab = $(this);
+		if(!$clicked_tab.hasClass('selected_tab')){
+		  $('.tab').removeClass('selected_tab');
+			$clicked_tab.addClass('selected_tab')	
+			$('.photos_and_comments_wrapper').toggle();
 		}
 	});
-}
-
-function toggleCheckboxes($checkboxes, $selected){
-	$checkboxes.attr('checked',false);
-	$selected.attr('checked',true);
 }
 
 function setRemoveFileListener(){
@@ -61,25 +46,16 @@ function setRemoveFileListener(){
 	});
 }
 
-function setRemovePhotoListener(){
-	$('.destroy_photo').on('click', function(){
-		var $icon = $(this);
-		var $thumbnail_wrapper = $icon.parent();
-		var $hidden_field = $icon.next("input[type='hidden']");
-		toggleHiddenFieldValue($hidden_field);
-		toggleBackgroundColor($thumbnail_wrapper);
-  });
+function setAddFileListener(){
+	var $file_field = $(".file_field_container");
+	$('#add_file_field').on('click', function(){
+		var $cloned_file_field = $file_field.clone();
+		var timestamp = new Date().getTime();
+		$cloned_file_field.find('input').attr('name', 'post[photos_attributes]['+timestamp+'][image_file]');
+		$(this).before($cloned_file_field);
+		setRemoveFileListener();
+		return false;
+	});
 }
 
-function toggleHiddenFieldValue(field){
-	parseInt(field.val()) ? field.val(0) : field.val(1);
-}
 
-function toggleBackgroundColor(wrapper){
-	var color = 'rgba(255,3,13,0.5)';
-	if(wrapper.css('background-color') == color){
-    wrapper.css('background-color', '');			
-	}else{
-    wrapper.css('background-color', color);		
-	}
-}
