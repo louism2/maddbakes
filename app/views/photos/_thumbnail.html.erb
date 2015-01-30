@@ -1,9 +1,19 @@
 <span class='thumbnail_wrapper'>
 	<% if signed_in? %>
-	  <%= image_tag('red_x.png', size: '20x20', class: 'destroy_photo') %>
-	  <%= hidden_field_tag "post[photos_attributes][#{thumbnail.id}][_destroy]", 0 %>
-	  <%= check_box_tag "post[photos_attribute][#{thumbnail.id}][header_photo]", thumbnail.header_photo, thumbnail.header_photo, class: 'header_photo' %>
-		<%= check_box_tag "post[photos_attribute][#{thumbnail.id}][cover_photo]", thumbnail.cover_photo, thumbnail.cover_photo, class: 'cover_photo' %>
+	  <ul data-id="#{thumbnail.id}">
+			<li>
+				<%= image_tag('red_x.png', size: '20x20', class: 'destroy_photo') %>
+	      <%= label_tag 'delete this photo?'%>
+			</li>
+			<li>
+				<%= check_box_tag "#{thumbnail.id}", thumbnail.header_photo, thumbnail.header_photo, class: 'photo_index_box header_photo_checkbox' %>
+				<%= label_tag 'make this a header photo for the post it was submitted with?' %>
+			</li>
+		  <li>
+		    <%= check_box_tag "#{thumbnail.id}", thumbnail.cover_photo, thumbnail.cover_photo, class: 'photo_index_box cover_photo_checkbox' %>		
+		    <%= label_tag 'make this a cover photo for the entire site?' %>
+			</li>
+		</ul>
 	<% end %>
 	<%= image_tag(build_s3_url(thumbnail.id), class: 'thumbnail') %>
 </span>
